@@ -22,7 +22,7 @@ public class UserDaoHibernateImpl implements UserDao {
                 "  `name` VARCHAR(45) NULL,\n" +
                 "  `lastName` VARCHAR(45) NULL,\n" +
                 "  `age` TINYINT NULL,\n" +
-                "  PRIMARY KEY (`id`))").addEntity(User.class).executeUpdate();
+                "  PRIMARY KEY (`id`))").executeUpdate();
         transaction.commit();
         session.close();
     }
@@ -31,7 +31,7 @@ public class UserDaoHibernateImpl implements UserDao {
     public void dropUsersTable() {
         Session session = Util.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        session.createSQLQuery("DROP TABLE IF EXISTS users").addEntity(User.class).executeUpdate();
+        session.createSQLQuery("DROP TABLE IF EXISTS users").executeUpdate();
         transaction.commit();
         session.close();
     }
@@ -64,7 +64,7 @@ public class UserDaoHibernateImpl implements UserDao {
     public void cleanUsersTable() {
         Session session = Util.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        session.createSQLQuery("DELETE FROM users").addEntity(User.class).executeUpdate();
+        session.createSQLQuery("DELETE FROM users").executeUpdate();
         transaction.commit();
         session.close();
     }
